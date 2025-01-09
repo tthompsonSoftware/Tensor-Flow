@@ -43,6 +43,8 @@ train_ds, val_ds = tf.keras.utils.audio_dataset_from_directory(
 
 New data example for creating the model: https://medium.com/@oluyaled/audio-classification-using-deep-learning-and-tensorflow-a-step-by-step-guide-5327467ee9ab
 
+stackoverflow of my exact question: https://stackoverflow.com/questions/41047151/how-to-classify-continuous-audio
+
 
 
 
