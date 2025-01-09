@@ -41,6 +41,8 @@ train_ds, val_ds = tf.keras.utils.audio_dataset_from_directory(
 //Convert waveforms to spectrograms (This may or may not be needed more research required) converts the data from a time domain to a time-frequency-domain
 //According to the tutorial for simple audio these files are then fed into the neural network (conversion implementation in https://www.tensorflow.org/tutorials/audio/simple_audio)
 
+New data example for creating the model: https://medium.com/@oluyaled/audio-classification-using-deep-learning-and-tensorflow-a-step-by-step-guide-5327467ee9ab
+
 
 
 
