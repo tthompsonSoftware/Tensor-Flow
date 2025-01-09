@@ -45,6 +45,8 @@ New data example for creating the model: https://medium.com/@oluyaled/audio-clas
 
 stackoverflow of my exact question: https://stackoverflow.com/questions/41047151/how-to-classify-continuous-audio
 
+explanation of running a RNN for long videos audio classification: https://towardsdatascience.com/recurrent-neural-nets-for-audio-classification-81cb62327990
+
 
 
 
