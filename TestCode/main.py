@@ -3,21 +3,30 @@ import os
 import pathlib
 
 import matplotlib.pyplot as plt
-import numpy
-import seaborn
-import tensorflow
+import numpy as np
+import seaborn as sns
+import tensorflow as tf
 
 # extensions not sure if needed
 from tensorflow.keras import layers
 from tensorflow.keras import models
 from IPython import display
 
+
 # Start of implementation
 
 # Path set for file to load
-DATASET_PATH = 'PATH' 
+DATASET_PATH = 'data/mini_speech_commands_extracted/mini_speech_commands'
 
 data_dir = pathlib.Path(DATASET_PATH)
+if not data_dir.exists():
+  tf.keras.utils.get_file(
+      'mini_speech_commands.zip',
+      origin="http://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip",
+      extract=True,
+      cache_dir='.', cache_subdir='data')
+
+  print(data_dir)
 
 # take data examples and label by type of data ex. (Running well, Stopped, Startup, etc) types depend on wants by Josh
 
@@ -32,8 +41,10 @@ train_ds, val_ds = tf.keras.utils.audio_dataset_from_directory(
     batch_size=64,
     validation_split=0.2,
     seed=0,
-    output_sequence_length=?, # determined based off length of clips 16000 is 1 second sets data to known length for easier comparison might not work
+    output_sequence_length=16000, # determined based off length of clips 16000 is 1 second sets data to known length for easier comparison might not work
     subset='both')
+
+    
 
 label_names = np.array(train_ds.class_names)
 print()
