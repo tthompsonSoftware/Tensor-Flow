@@ -1,6 +1,7 @@
 # Imports of dependencies
 import os
 import pathlib
+from tkinter import CHAR
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -274,3 +275,31 @@ sns.heatmap(confusion_mtx,
 plt.xlabel('Prediction')
 plt.ylabel('Label')
 plt.show()
+
+check = 0
+x = ""
+answer = ""
+path = ""
+
+
+
+while check != 2:
+    answer = input('Provide path of file to test against if finish type stop.\n')
+    if answer != "stop":
+        # run this
+
+        x = 'data/mini_speech_commands_extracted/mini_speech_commands/right/0c2ca723_nohash_0.wav'
+        x = tf.io.read_file(str(x))
+        x, sample_rate = tf.audio.decode_wav(x, desired_channels=1, desired_samples=16000,)
+        x = tf.squeeze(x, axis=-1)
+        waveform = x
+        x = get_spectrogram(x)
+        x = x[tf.newaxis,...]
+
+        prediction = model(x)
+        x_labels = label_names
+        plt.bar(x_labels, tf.nn.softmax(prediction[0]))
+        plt.title('No')
+        plt.show()
+    else:
+        break
