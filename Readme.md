@@ -1,5 +1,19 @@
 ## Tensor-Flow
 
+## Test Code
+
+The Test Code will Download ope access files from google that will contain audio files of people saying different key words and then we will use those words to create a language model for speech recognition.
+The audio files are all shortened to 1 second in length and compiled into 2 different arrays so that we can build the model with the test array and check against it with an analysis array.
+
+# Running Test Code
+1. Open command prompt navigate to folder with files readme.md, etc
+2. Activate virtual environment if required for python 3.8 - 3.12 for tensor flow requirements with command "start your_env/Scripts/activate"
+3. Ensure all required dependencies are installed in your virtual environment see information folder
+4. Run Testcode to see language model with python TestCode/main.py
+
+
+
+
 # First look
 
 - Tensor flow is a way to create basic machine learning models
