@@ -1,4 +1,5 @@
 # Imports of dependencies
+import keyword
 import os
 import pathlib
 from tkinter import CHAR
@@ -7,6 +8,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import tensorflow as tf
+from scipy import signal
+
 
 # extensions not sure if needed
 from tensorflow.keras import layers
@@ -150,7 +153,7 @@ axes[0].set_xlim([0, 16000])
 plot_spectrogram(spectrogram.numpy(), axes[1])
 axes[1].set_title('Spectrogram')
 plt.suptitle(label.title())
-plt.show()
+#plt.show()
 
 # function to create dataset from spectrogram
 
@@ -182,7 +185,7 @@ for i in range(n):
     plot_spectrogram(example_spectrograms[i].numpy(), ax)
     ax.set_title(label_names[example_spect_labels[i].numpy()])
 
-plt.show()
+#plt.show()
 
 # build and train
 
@@ -275,25 +278,55 @@ sns.heatmap(confusion_mtx,
 plt.xlabel('Prediction')
 plt.ylabel('Label')
 plt.show()
+plt.close('all')
 
 check = 0
 x = ""
 answer = ""
 path = ""
-
-
+keyword = ""
+file = ""
+filenames = ""
+directory = 'data/mini_speech_commands_extracted/mini_speech_commands/'
+n = 1
+num = 0
 
 while check != 2:
-    answer = input('Provide path of file to test against if finish type stop.\n')
+    answer = input('Provide keyword of file to test against if you are finished type stop.\n')
     if answer != "stop":
         # run this
+        keyword = answer
+        try:
+            filenames = os.listdir(directory + keyword)
+            for filename in filenames:
+                print(str(n) + '. ' + filename)
+                n += 1
+            selection = input('select item #\n')
+            num = int(selection)
 
-        x = 'data/mini_speech_commands_extracted/mini_speech_commands/right/0c2ca723_nohash_0.wav'
+            file = filenames[num]
+        except FileNotFoundError:
+            print(f"Error: Directory '{directory}' not found.")
+            break
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            break
+
+        x = 'data/mini_speech_commands_extracted/mini_speech_commands/' + keyword + '/' + file
         x = tf.io.read_file(str(x))
         x, sample_rate = tf.audio.decode_wav(x, desired_channels=1, desired_samples=16000,)
         x = tf.squeeze(x, axis=-1)
         waveform = x
         x = get_spectrogram(x)
+        print(x.shape)
+        fig, axes = plt.subplots(2, figsize=(12, 8))
+        plot_spectrogram(x, axes[0])
+        axes[0].set_title('Spectrogram')
+        plt.suptitle(label.title())
+        plt.show()
+        fs = 240
+        f, t, Sxx = signal.spectrogram(x, fs)
+        print(f)
         x = x[tf.newaxis,...]
 
         prediction = model(x)
@@ -301,5 +334,8 @@ while check != 2:
         plt.bar(x_labels, tf.nn.softmax(prediction[0]))
         plt.title('No')
         plt.show()
+        print('Evaluation of data.\n')
+        #print(model.evaluate(x,return_dict=True))
+        
     else:
         break
