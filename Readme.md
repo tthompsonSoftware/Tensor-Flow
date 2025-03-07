@@ -54,3 +54,6 @@ train_ds, val_ds = tf.keras.utils.audio_dataset_from_directory(
 
 //Convert waveforms to spectrograms (This may or may not be needed more research required) converts the data from a time domain to a time-frequency-domain
 //According to the tutorial for simple audio these files are then fed into the neural network (conversion implementation in https://www.tensorflow.org/tutorials/audio/simple_audio)
+
+## first steps
+create an amplitude and frequenc analysis of something like metronomes just so we can tell if a machine is idle or running.
