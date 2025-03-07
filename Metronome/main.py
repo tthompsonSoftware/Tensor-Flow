@@ -91,6 +91,8 @@ ax.legend()
 ax2.legend()
 #plt.show()
 
+
+
 #display amplitude
 waveform = np.array(y)
 
@@ -106,11 +108,23 @@ waveform = np.array(y)
 
 # Find the minimum amplitude
 min_amplitude = np.min(waveform)
-print(f"minimum amplitude: {min_amplitude}")
+print(f"Minimum amplitude: {min_amplitude}")
 
 # Find the maximum absolute amplitude
 min_abs_amplitude = np.min(np.abs(waveform))
-print(f"minimum absolute amplitude: {min_abs_amplitude}")
+print(f"Minimum absolute amplitude: {min_abs_amplitude}")
+
+
+#Below is how to get a amplitude in a specific area by loading the audio file again and using an audio offset.
+y, sr = librosa.load("Metronome/Audio_examples/metronome-1.mp3", offset=15.0, duration=5.0)
+
+waveform = np.array(y)
+
+min_amplitude = np.min(waveform)
+print(f"minimum amplitude in area: {min_amplitude}")
+
+
+
 
 def plot(vector, name, xlabel=None, ylabel=None):
     plt.figure()
