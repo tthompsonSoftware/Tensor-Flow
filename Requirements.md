@@ -13,10 +13,3 @@
 3. try to keep analysis of file short and during runtime so that machines can test without needing a long process
 4. Be prepared for anything to change and just try to keep the primary goal of improving at tensorflow
 
-#2nd meeting
-
-1. Real goal of project is to be able to export calculations to a new page(?) that will have the tooling information required
-2. This tooling information depends alot off head type multiple ways to deal with this, selection input gui for type of head that selects document with that head type or code that draws that head.
-3. Take time make sure to learn the api so that i can do latter parts easier also says pay bump should be coming night shift is allowable\
-4. Not sure we want a new input method so focus rn is to make sure that calculations are doable and maybe check if i can save as(? save as what the calculations?) to another file that gives tooling information
-
